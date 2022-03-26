@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DBAccess.DataAccessModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,8 @@ namespace DBAccess.DBContext
         {
 
         }
+        public DbSet<Division> divisions { get; set; }
+        public DbSet<Depo> depos { get; set; }
+        public DbSet<Driver> drivers { get; set; }
     }
 }

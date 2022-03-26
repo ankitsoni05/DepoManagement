@@ -3,15 +3,17 @@ using System;
 using DBAccess.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DBAccess.Migrations
 {
     [DbContext(typeof(DriverContext))]
-    partial class DriverContextModelSnapshot : ModelSnapshot
+    [Migration("20220319102417_AddedDepoAndDivisionTables")]
+    partial class AddedDepoAndDivisionTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace DBAccess.Migrations
 
                     b.HasIndex("DivisionId");
 
-                    b.ToTable("depos");
+                    b.ToTable("Depos");
                 });
 
             modelBuilder.Entity("DBAccess.DataAccessModels.Division", b =>
@@ -51,51 +53,7 @@ namespace DBAccess.Migrations
 
                     b.HasKey("DivisionId");
 
-                    b.ToTable("divisions");
-                });
-
-            modelBuilder.Entity("DBAccess.DataAccessModels.Driver", b =>
-                {
-                    b.Property<int>("driverId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("DepoId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("aadharNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("contactNumber")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("dateOfBirth")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("dateOfJoining")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("drivingLicenceNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("emailId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("firstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("lastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("panNumber")
-                        .HasColumnType("text");
-
-                    b.HasKey("driverId");
-
-                    b.HasIndex("DepoId");
-
-                    b.ToTable("drivers");
+                    b.ToTable("Divisions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -303,17 +261,6 @@ namespace DBAccess.Migrations
                     b.Navigation("division");
                 });
 
-            modelBuilder.Entity("DBAccess.DataAccessModels.Driver", b =>
-                {
-                    b.HasOne("DBAccess.DataAccessModels.Depo", "depo")
-                        .WithMany("drivers")
-                        .HasForeignKey("DepoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("depo");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -363,11 +310,6 @@ namespace DBAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DBAccess.DataAccessModels.Depo", b =>
-                {
-                    b.Navigation("drivers");
                 });
 
             modelBuilder.Entity("DBAccess.DataAccessModels.Division", b =>

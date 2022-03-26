@@ -3,15 +3,17 @@ using System;
 using DBAccess.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DBAccess.Migrations
 {
     [DbContext(typeof(DriverContext))]
-    partial class DriverContextModelSnapshot : ModelSnapshot
+    [Migration("20220326042443_addedDriversTable")]
+    partial class addedDriversTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
