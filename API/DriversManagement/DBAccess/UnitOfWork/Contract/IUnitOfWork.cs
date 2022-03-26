@@ -1,0 +1,15 @@
+﻿using DBAccess.DataAccess.Contract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DBAccess.UnitOfWork.Contract
+{
+    public interface IUnitOfWork : IDisposable
+    {
+        IDriverDataAccessRepo Drivers { get; }
+        int CompleteAsync();
+    }
+}

@@ -1,4 +1,6 @@
 using DBAccess.DBContext;
+using DBAccess.UnitOfWork.Contract;
+using DBAccess.UnitOfWork.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +41,7 @@ namespace DriversManagement
                 options.UseLazyLoadingProxies();
                 options.UseNpgsql(Configuration.GetConnectionString("PostGres"));
             });
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
