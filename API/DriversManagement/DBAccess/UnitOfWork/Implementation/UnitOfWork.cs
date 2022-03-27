@@ -21,9 +21,9 @@ namespace DBAccess.UnitOfWork.Implementation
         }
         public IDriverDataAccessRepo Drivers { get; set; }
 
-        public int CompleteAsync()
+        public async Task<int> CompleteAsync()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()

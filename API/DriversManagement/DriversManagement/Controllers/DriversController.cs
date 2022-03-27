@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using DBAccess.UnitOfWork.Contract;
+using DriversManagement.Dtos;
+using DriversManagement.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,11 +27,27 @@ namespace DriversManagement.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("GetAllDrivers")]
+        [HttpGet("getAllDrivers")]
         public async Task<IActionResult> GetAllDriversAsync()
         {
             var drivers = _mapper.Map<IEnumerable<DMM.Driver>>(await _unitOfWork.Drivers.GetAllAsync());
             return Ok(drivers);
+        }
+
+        [HttpGet("getDriver/{id}")]
+        public async Task<IActionResult> GetDriver(int id)
+        {
+            var driver = _mapper.Map<DMM.Driver>(await _unitOfWork.Drivers.GetAsync(id));
+            return Ok(driver);
+        }
+
+        [HttpPost("createDriver")]
+        public async Task<IActionResult> CreateDriver(Driver driverDto)
+        {
+            var driver = _mapper.Map<DAM.Driver>(driverDto);
+            await _unitOfWork.Drivers.AddAsync(driver);
+            await _unitOfWork.CompleteAsync();
+            return Ok(_mapper.Map<DMM.Driver>(driver));
         }
     }
 }

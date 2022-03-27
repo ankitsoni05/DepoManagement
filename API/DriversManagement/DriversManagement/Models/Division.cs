@@ -6,6 +6,5 @@ namespace DriversManagement.Models
     {
         public int DivisionId { get; set; }
         public string DivisionName { get; set; }
-        public IEnumerable<Depo> depos { get; set; }
     }
 }

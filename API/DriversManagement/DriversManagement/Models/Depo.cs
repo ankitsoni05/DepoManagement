@@ -8,6 +8,5 @@ namespace DriversManagement.Models
         public string DepoName { get; set; }
         public int DivisionId { get; set; }
         public Division division { get; set; }
-        public IEnumerable<Driver> drivers { get; set; }
     }
 }
