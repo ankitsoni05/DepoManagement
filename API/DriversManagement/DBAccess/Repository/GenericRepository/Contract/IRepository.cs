@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DBAccess.Repository.GenericRepository.Contract
 {
     public interface IRepository<TEntity> where TEntity : class
     {
         //Getting Data
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
+        Task<TEntity> GetAsync(int id);
+        Task<IEnumerable<TEntity>> GetAllAsync();
         IEnumerable<TEntity> Find(Expression<Func<TEntity,bool>> predicate);
 
         //Adding Data
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
+        Task AddAsync(TEntity entity);
+        Task AddRangeAsync(IEnumerable<TEntity> entities);
 
         //Removing Data
         void Remove(TEntity entity);

@@ -1,9 +1,11 @@
 ﻿using DBAccess.DBContext;
 using DBAccess.Repository.GenericRepository.Contract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DBAccess.Repository.GenericRepository.Implementation
 {
@@ -15,14 +17,19 @@ namespace DBAccess.Repository.GenericRepository.Implementation
         {
             this.context = context;
         }
-        public void Add(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            context.Set<TEntity>().Add(entity);
+            await context.Set<TEntity>().AddAsync(entity);
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        public async Task AddRange(IEnumerable<TEntity> entities)
         {
-            context.Set<TEntity>().AddRange(entities);
+            await context.Set<TEntity>().AddRangeAsync(entities);
+        }
+
+        public Task AddRangeAsync(IEnumerable<TEntity> entities)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
@@ -30,14 +37,14 @@ namespace DBAccess.Repository.GenericRepository.Implementation
             return context.Set<TEntity>().Where(predicate);
         }
 
-        public TEntity Get(int id)
+        public async Task<TEntity> GetAsync(int id)
         {
-            return context.Set<TEntity>().Find(id);
+            return await context.Set<TEntity>().FindAsync(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return context.Set<TEntity>().ToList();
+            return await context.Set<TEntity>().ToListAsync();
         }
 
         public void Remove(TEntity entity)
