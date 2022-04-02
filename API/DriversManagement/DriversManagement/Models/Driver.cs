@@ -16,5 +16,6 @@ namespace DriversManagement.Models
         public string drivingLicenceNumber { get; set; }
         public Depo depo { get; set; }
         public int DepoId { get; set; }
+        public decimal driverSalary { get; set; }
     }
 }

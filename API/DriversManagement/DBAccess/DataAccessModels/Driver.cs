@@ -22,5 +22,6 @@ namespace DBAccess.DataAccessModels
         public string drivingLicenceNumber { get; set; }
         public virtual Depo depo { get; set; }
         public int DepoId { get; set; }
+        public decimal driverSalary { get; set; }
     }
 }
