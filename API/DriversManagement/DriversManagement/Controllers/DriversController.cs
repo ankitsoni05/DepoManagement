@@ -31,6 +31,8 @@ namespace DriversManagement.Controllers
         public async Task<IActionResult> GetAllDriversAsync()
         {
             var drivers = _mapper.Map<IEnumerable<DMM.Driver>>(await _unitOfWork.Drivers.GetAllAsync());
+            if(drivers == null)
+                return NotFound();
             return Ok(drivers);
         }
 
@@ -38,6 +40,8 @@ namespace DriversManagement.Controllers
         public async Task<IActionResult> GetDriver(int id)
         {
             var driver = _mapper.Map<DMM.Driver>(await _unitOfWork.Drivers.GetAsync(id));
+            if (driver == null)
+                return NotFound();
             return Ok(driver);
         }
 
@@ -46,7 +50,7 @@ namespace DriversManagement.Controllers
         {
             var driver = _mapper.Map<DAM.Driver>(driverDto);
             await _unitOfWork.Drivers.AddAsync(driver);
-            await _unitOfWork.CompleteAsync();
+            var result = await _unitOfWork.CompleteAsync();
             return Ok(_mapper.Map<DMM.Driver>(driver));
         }
     }
