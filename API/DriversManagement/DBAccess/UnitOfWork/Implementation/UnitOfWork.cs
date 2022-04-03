@@ -18,8 +18,12 @@ namespace DBAccess.UnitOfWork.Implementation
         {
             this._context = context;
             Drivers = new DriverDataAccessRepo(context);
+            Divisions = new DivisionAccessRepo(context);
+            Depos = new DepoAccessRepo(context);
         }
         public IDriverDataAccessRepo Drivers { get; set; }
+        public IDivisionAccessRepo Divisions { get; }
+        public IDepoAccessRepo Depos { get; }
 
         public async Task<int> CompleteAsync()
         {

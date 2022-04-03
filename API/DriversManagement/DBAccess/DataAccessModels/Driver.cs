@@ -21,7 +21,8 @@ namespace DBAccess.DataAccessModels
         public string panNumber { get; set; }
         public string drivingLicenceNumber { get; set; }
         public virtual Depo depo { get; set; }
-        public int DepoId { get; set; }
         public decimal driverSalary { get; set; }
+        public int DepoId { get; set; }
+        public virtual IEnumerable<DriverPay> DriverPays { get; set; }
     }
 }

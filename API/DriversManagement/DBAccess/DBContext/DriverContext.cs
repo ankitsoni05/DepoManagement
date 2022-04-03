@@ -19,5 +19,6 @@ namespace DBAccess.DBContext
         public DbSet<Division> divisions { get; set; }
         public DbSet<Depo> depos { get; set; }
         public DbSet<Driver> drivers { get; set; }
+        public DbSet<DriverPay> driverPays { get; set; }
     }
 }

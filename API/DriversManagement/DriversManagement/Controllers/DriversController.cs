@@ -53,5 +53,23 @@ namespace DriversManagement.Controllers
             var result = await _unitOfWork.CompleteAsync();
             return Ok(_mapper.Map<DMM.Driver>(driver));
         }
+
+        [HttpGet("getDropdownsData")]
+        public async Task<IActionResult> dropDownsData()
+        {
+            var divisions = _mapper.Map<IEnumerable<DMM.Division>>(await _unitOfWork.Divisions.GetAllAsync());
+            var depos = _mapper.Map<IEnumerable<DMM.Depo>>(await _unitOfWork.Depos.GetAllAsync());
+            var DepoDivisonDropdowns = new DepoDivisonDropdowns()
+            {
+                depos = depos,
+                divisions = divisions
+            };
+            return Ok(DepoDivisonDropdowns);
+        }
+
+        //public async Task<IActionResult> AddPayAttributes(DriverPay driverPay)
+        //{ 
+
+        //}
     }
 }

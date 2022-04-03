@@ -43,6 +43,7 @@ namespace DriversManagement
                 options.UseLazyLoadingProxies();
                 options.UseNpgsql(Configuration.GetConnectionString("PostGres"));
             });
+            services.AddCors();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(typeof(Startup));
         }
@@ -60,6 +61,8 @@ namespace DriversManagement
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
 
             app.UseAuthorization();
 

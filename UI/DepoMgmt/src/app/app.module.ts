@@ -8,7 +8,13 @@ import { AllDriversComponent } from './all-drivers/all-drivers.component';
 import { DriverDetailsComponent } from './driver-details/driver-details.component';
 import { AddNewDriverComponent } from './add-new-driver/add-new-driver.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,13 +22,19 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
     NavComponent,
     AllDriversComponent,
     DriverDetailsComponent,
-    AddNewDriverComponent
+    AddNewDriverComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

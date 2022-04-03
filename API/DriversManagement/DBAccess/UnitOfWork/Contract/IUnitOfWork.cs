@@ -10,6 +10,8 @@ namespace DBAccess.UnitOfWork.Contract
     public interface IUnitOfWork : IDisposable
     {
         IDriverDataAccessRepo Drivers { get; }
+        IDivisionAccessRepo Divisions { get; }
+        IDepoAccessRepo Depos { get; }
         Task<int> CompleteAsync();
     }
 }
