@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DriverService {
 
-  baseUrl = "https://localhost:44391/api/";
+  baseUrl = "http://192.168.0.104:88/api/";
   constructor(private http:HttpClient) { }
 
   getDepoAndDivisionData(){ 
@@ -15,5 +15,9 @@ export class DriverService {
 
   createDriver(model:any){
     return this.http.post(this.baseUrl+"Drivers/createDriver",model)
+  }
+
+  getAllDrivers(){
+    return this.http.get(this.baseUrl+"Drivers/getAllDrivers")
   }
 }
