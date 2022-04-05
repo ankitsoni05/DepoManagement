@@ -7,7 +7,8 @@ import { DriverDetailsComponent } from './driver-details/driver-details.componen
 const routes: Routes = [ 
   {path:'drivers',component:AllDriversComponent},
   {path:'driverdetail/:id',component:DriverDetailsComponent},
-  {path:'addNew',component:AddNewDriverComponent}
+  {path:'addNew',component:AddNewDriverComponent},
+  {path:'details',component:DriverDetailsComponent}
 ];
 
 @NgModule({
