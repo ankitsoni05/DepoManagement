@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DriverService } from '../_services/driver.service';
 import * as _ from 'lodash';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-new-driver',
@@ -28,7 +29,7 @@ export class AddNewDriverComponent implements OnInit {
   divisions:any
   depoDropdowns : any;
   divisionDropdowns : any;
-  constructor(private _accountService : DriverService) { }
+  constructor(private _accountService : DriverService,private _toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.getDropwonsData();
@@ -39,6 +40,9 @@ export class AddNewDriverComponent implements OnInit {
     // console.warn(this.profileForm.value);
     this._accountService.createDriver(this.profileForm.value).subscribe(res=>{
       console.log(res);
+      this._toastr.success("Driver Added Successfully");
+    },error=>{
+      this._toastr.error(error.error)
     })
   }
 

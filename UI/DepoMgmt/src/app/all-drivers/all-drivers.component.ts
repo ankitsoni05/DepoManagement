@@ -32,9 +32,16 @@ export class AllDriversComponent implements AfterViewInit  {
     this._accountService.getAllDrivers().subscribe((res:any)=>{
       console.log(res);
       _.forEach(res,function(value){
-        return ELEMENT_DATA.push(
-          // { driverId: value?.driverId }
-        );
+        ELEMENT_DATA.push({
+            driverId : value.driverId,
+            Name: value.firstName +' '+value.lastName,
+            DOB: value.dateOfBirth,
+            DOJ: value.dateOfJoining,
+            Contact:value.contactNumber,
+            Email:value.emailId,
+            Division:value.depo.division.divisionName,
+            Depo:value.depo.depoName
+          });
       });
     });
   }
@@ -44,14 +51,14 @@ export class AllDriversComponent implements AfterViewInit  {
 
 
 export interface PeriodicElement {
-  driverId:number;
-  Name: string;
-  DOB: string;
-  DOJ: string;
-  Contact:string;
-  Email:string;
-  Division:string;
-  Depo:string
+  driverId:any;
+  Name: any;
+  DOB: any;
+  DOJ: any;
+  Contact:any;
+  Email:any;
+  Division:any;
+  Depo:any
 }
 
 const ELEMENT_DATA: PeriodicElement[] = []

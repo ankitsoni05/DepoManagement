@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {ToastrModule} from 'ngx-toastr'
 
 
 @NgModule({
@@ -39,7 +40,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSelectModule,
     HttpClientModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ToastrModule.forRoot({
+      positionClass : 'toast-bottom-right'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
