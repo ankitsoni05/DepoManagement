@@ -1,18 +1,132 @@
-<h2>Details</h2>
 
-<span class="inline-grid grid-cols-3 gap-4">
-    <span>01468548964854894564899484964848</span>
-    <span>01468548964854894564899484964848</span>
-    <span>01468548964854894564899484964848</span>
-    <span>01468548964854894564899484964848</span>
-    <span>01468548964854894564899484964848</span>
-    <span>01468548964854894564899484964848</span>
-  </span>
-  <span class="inline-grid grid-cols-3 gap-4">
-    <span>01</span>
-    <span>02</span>
-    <span>03</span>
-    <span>04</span>
-    <span>05</span>
-    <span>06</span>
-  </span>
+
+  <div class="container">
+    <h2>Details</h2>
+    <mat-divider></mat-divider>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" colspan="3">Basic Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">Employee Id</td>
+        <td>{{driverDetails?.driverId}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Full Name</td>
+        <td>{{driverDetails?.firstName +' '+driverDetails?.lastName}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Date Of Birth</td>
+        <td>{{driverDetails?.dateOfBirth | date}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Contact Number</td>
+        <td>{{driverDetails?.contactNumber || '-'}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Email Id</td>
+        <td>{{driverDetails?.emailId || '-'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<mat-divider></mat-divider>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" colspan="3">Additional Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">Aadhar Number</td>
+        <td>{{driverDetails?.aadharNumber}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Driving Licence No</td>
+        <td>{{driverDetails?.drivingLicenceNumber}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Monthly Salary <br> (Excluding Other benifits)</td>
+        <td>{{driverDetails?.driverSalary}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<mat-divider></mat-divider>
+<div class="container">
+  <table class="table resp">
+    <thead>
+      <tr>
+        <th scope="col" colspan="3">Location Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">Division Name</td>
+        <td>{{driverDetails?.depo?.division?.divisionName || '-'}}</td>
+      </tr>
+      <tr>
+        <td scope="row">Depo Name</td>
+        <td>{{driverDetails?.depo?.depoName || '-'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<mat-divider></mat-divider>
+<div class="container">
+  <table class="table resp">
+    <thead>
+      <tr>
+        <th scope="col" colspan="3">Banking Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">PAN Number</td>
+        <td>{{driverDetails?.panNumber || '-'}}</td>
+      </tr>    
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="OT Id">
+        <th mat-header-cell *matHeaderCellDef> OT Id. </th>
+        <td mat-cell *matCellDef="let element"> {{element.otId}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="AddedDate">
+        <th mat-header-cell *matHeaderCellDef> AddedDate </th>
+        <td mat-cell *matCellDef="let element"> {{element.AddedDate | date}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="AddedForMonth">
+        <th mat-header-cell *matHeaderCellDef> AddedForMonth </th>
+        <td mat-cell *matCellDef="let element"> {{element.AddedForMonth | date}} </td>
+      </ng-container>
+      
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="overTimeAmount">
+        <th mat-header-cell *matHeaderCellDef> overTimeAmount </th>
+        <td mat-cell *matCellDef="let element"> {{element.overTimeAmount}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

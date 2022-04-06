@@ -8,7 +8,6 @@ const routes: Routes = [
   {path:'drivers',component:AllDriversComponent},
   {path:'driverdetail/:id',component:DriverDetailsComponent},
   {path:'addNew',component:AddNewDriverComponent},
-  {path:'details',component:DriverDetailsComponent}
 ];
 
 @NgModule({

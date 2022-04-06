@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DriversManagement.Models
 {
@@ -17,5 +18,6 @@ namespace DriversManagement.Models
         public Depo depo { get; set; }
         public int DepoId { get; set; }
         public decimal driverSalary { get; set; }
+        public IEnumerable<DriverPay> DriverPays { get; set; }
     }
 }

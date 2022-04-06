@@ -31,7 +31,7 @@ namespace DriversManagement.Controllers
         public async Task<IActionResult> GetAllDriversAsync()
         {
             var drivers = _mapper.Map<IEnumerable<DMM.Driver>>(await _unitOfWork.Drivers.GetAllAsync());
-            if(drivers == null)
+            if (drivers == null)
                 return NotFound();
             return Ok(drivers);
         }
@@ -67,9 +67,13 @@ namespace DriversManagement.Controllers
             return Ok(DepoDivisonDropdowns);
         }
 
-        //public async Task<IActionResult> AddPayAttributes(DriverPay driverPay)
-        //{ 
-
-        //}
+        [HttpPost("addPayAttributes")]
+        public async Task<IActionResult> AddPayAttributes(DriverPay driverPay)
+        {
+            var pAttributes = _mapper.Map<DAM.DriverPay>(driverPay);
+            await _unitOfWork.payAttributes.AddAsync(pAttributes);
+            var result = await _unitOfWork.CompleteAsync();
+            return Ok(_mapper.Map<DMM.DriverPay>(pAttributes));
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace DBAccess.UnitOfWork.Contract
         IDriverDataAccessRepo Drivers { get; }
         IDivisionAccessRepo Divisions { get; }
         IDepoAccessRepo Depos { get; }
+        IPayAttributeAccessRepo payAttributes { get; }
         Task<int> CompleteAsync();
     }
 }

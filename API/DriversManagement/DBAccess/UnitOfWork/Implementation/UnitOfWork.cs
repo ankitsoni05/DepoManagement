@@ -20,10 +20,12 @@ namespace DBAccess.UnitOfWork.Implementation
             Drivers = new DriverDataAccessRepo(context);
             Divisions = new DivisionAccessRepo(context);
             Depos = new DepoAccessRepo(context);
+            payAttributes = new PayAttributeAccessRepo(context);
         }
         public IDriverDataAccessRepo Drivers { get; set; }
         public IDivisionAccessRepo Divisions { get; }
         public IDepoAccessRepo Depos { get; }
+        public IPayAttributeAccessRepo payAttributes { get; } 
 
         public async Task<int> CompleteAsync()
         {
